@@ -1,12 +1,35 @@
 <ux-layout-app-shell [isScrollHandlerActive]="true"
                      headerAppFullName="Application name"
                      headerAppShortName="App"
+
+                     [hasSidebar]="true"
+                     [isSidebarInner]="true"
+                     sidebarTheme="light"
+
                      [headerUserInfos]="userInfos"
                      (headerLanguageChanged)="onLanguageChanged($event)"
                      [navBarNotificationLinks]="notificationLinks"
                      [navBarTopMenuLinks]="menuLinks"
                      footerAppVersion="@eui.version"
                      footerAppReleaseDate="@timestamp@">
+
+    <!-- AGREGADO -->
+    <!-- ESTE NO FUNCIONA SI EL SIDE BAR ES INTERNO -->
+    <uxAppShellSidebarHeaderContent>HOLA</uxAppShellSidebarHeaderContent>
+    <uxAppShellSidebarContent>
+        <ux-list-items titleLabel="Title label">
+            <ux-list-item label="Item 1"></ux-list-item>
+            <ux-list-item label="Item 2"></ux-list-item>
+            <ux-list-item label="Item 3"></ux-list-item>
+        </ux-list-items>
+
+        <!-- NO FUNCIONA NO SE SABE POR QUE -->
+        <ux-list-items titleLabel="Title label 2" [links]="itemList"></ux-list-items>
+
+        <!-- ARBOLES -->
+        <ux-tree [nodes]="treeNodes"></ux-tree>
+    </uxAppShellSidebarContent>
+    <!-- END -->
 
     <uxAppShellNavBarItemsContent>
         <ux-layout-nav-bar-action-item iconClass="fa fa-info-circle">
@@ -27,4 +50,3 @@
 
 
 </ux-layout-app-shell>
-

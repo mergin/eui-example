@@ -27,6 +27,10 @@ export class AppComponent implements OnInit {
     notificationLinks: UxLink[] = [];
     userInfos: string = 'NAME Firstname';
 
+    // Agregado
+    treeNodes: UxLink[];
+    itemList: UxLink[];
+
     constructor(
         @Inject(CONFIG_TOKEN) private config: any,
         private translateService: TranslateService,
@@ -35,6 +39,30 @@ export class AppComponent implements OnInit {
     ) {
         translateService.setDefaultLang('en');
         translateService.use('en');
+
+        // Agregado
+        this.treeNodes = [
+            new UxLink({ label: 'node 0' }),
+            new UxLink({
+                label: 'node 1', children: [
+                    new UxLink({ label: 'node 1.1' }),
+                    new UxLink({ label: 'node 1.2' }),
+                    new UxLink({
+                        label: 'node 1.3', children: [
+                            new UxLink({ label: 'node 1.3.1' }),
+                            new UxLink({ label: 'node 1.3.2' }),
+                        ]
+                    }),
+                    new UxLink({ label: 'node 1.4' }),
+                    new UxLink({ label: 'node 1.5' }),
+                ]
+            })
+        ];
+        this.itemList = [
+            new UxLink({ label: 'it1' }),
+            new UxLink({ label: 'it4' }),
+            new UxLink({ label: 'it3' })
+        ];
     }
 
     ngOnInit() {
@@ -83,7 +111,7 @@ export class AppComponent implements OnInit {
                 { label: 'Notification title', subLabel: 'This is the description of the noficiation' }
             ),
             new UxLink(
-                 { label: 'Notification title', subLabel: 'This is the description of the noficiation' }
+                { label: 'Notification title', subLabel: 'This is the description of the noficiation' }
             ),
         ];
     }
